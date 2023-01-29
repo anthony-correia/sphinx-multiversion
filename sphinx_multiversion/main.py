@@ -356,7 +356,8 @@ def main(argv=None):
                 }
             )
             if args.do:
-                subprocess.check_all(args.do)
+                print("Running:", args.do)
+                subprocess.check_call(args.do, cwd=current_cwd, env=env)
             subprocess.check_call(cmd, cwd=current_cwd, env=env)
 
     return 0

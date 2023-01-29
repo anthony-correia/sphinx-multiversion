@@ -160,6 +160,12 @@ def main(argv=None):
         action="store_true",
         help="dump generated metadata and exit",
     )
+    parser.add_argument(
+        "--do",
+        required=False,
+        default=None,
+        help="Bash command line(s) that is executed in the clone repository",
+    )
     args, argv = parser.parse_known_args(argv)
     if args.noconfig:
         return 1
@@ -349,6 +355,8 @@ def main(argv=None):
                     "SPHINX_MULTIVERSION_CONFDIR": data["confdir"],
                 }
             )
+            if args.do:
+                subprocess.check_all(args.do)
             subprocess.check_call(cmd, cwd=current_cwd, env=env)
 
     return 0

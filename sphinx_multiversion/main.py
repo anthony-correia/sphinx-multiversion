@@ -164,7 +164,8 @@ def main(argv=None):
         "--do",
         required=False,
         default=None,
-        help="Bash command line(s) that is executed in the clone repository",
+        nargs='+',
+        help="Bash command line(s) that is executed in the cloned repository",
     )
     args, argv = parser.parse_known_args(argv)
     if args.noconfig:
